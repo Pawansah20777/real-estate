@@ -4,7 +4,6 @@ import p from "../assets/img/houses/p.jpg";
 import house5 from "../assets/img/houses/house5.png";
 import house6 from "../assets/img/houses/house6.png";
 
-
 import {
   FaCog,
   FaHome,
@@ -13,7 +12,7 @@ import {
   FaSignOutAlt,
   FaComments,
   FaBars,
-  FaEdit, // Added import for the edit icon
+  FaEdit,
 } from "react-icons/fa";
 
 const Sidebar = () => {
@@ -24,13 +23,12 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex h-screen mb-10  ">
-      {/* Sidebar */}
+    <div className="flex h-screen mb-10">
       <nav
-        className="flex-none w-50 bg-gray-400 p-4 relative"
-        style={{ height: "550px" }}
+        className="flex-none w-64 bg-gray-900 p-4 relative"
+        style={{ height: "100vh" }}
       >
-        <div className="flex items-center mb-4">
+        <div className="flex items-center mb-8">
           <div className="relative">
             <img
               src={p}
@@ -38,55 +36,54 @@ const Sidebar = () => {
               className="rounded-full w-16 h-16"
             />
           </div>
-          <div className="ml-3">
-            <p className="text-base font-semibold">Pawan Sah</p>
-            <p className="text-sm text-gray-600">psah770@rku.ac.in</p>
-            <Link to="your_link_here" className="flex items-center mt-1">
-              <FaEdit className="w-5 h-5 mr-0 text-black-500" />{" "}
-              {/* Edit icon */}
-              <p className="text-base text-black-700">Edit</p>
+          <div className="ml-4">
+            <p className="text-lg font-semibold text-white">Pawan Sah</p>
+            <p className="text-sm text-gray-400">psah770@rku.ac.in</p>
+            <Link to="your_link_here" className="flex items-center mt-2 text-white">
+              <FaEdit className="w-4 h-4 mr-1" />
+              <p className="text-sm">Edit</p>
             </Link>
           </div>
           <FaBars
-            className="absolute top-4 right-4 cursor-pointer text-black bg-black-700 rounded-full p-1"
-            style={{ fontSize: "24px" }} // Adjust the size as needed
+            className="absolute top-4 right-4 cursor-pointer text-white bg-gray-700 rounded-full p-2"
+            style={{ fontSize: "24px" }}
             onClick={toggleMenu}
           />
         </div>
         {isMenuOpen && (
           <ul className="space-y-2">
-            <li className="sidebar-button">
-              <Link to="/dashboard">
+            <li className="sidebar-button hover:bg-indigo-500 transition duration-300">
+              <Link to="/dashboard" className="flex items-center text-white">
                 <FaHome className="w-6 h-6 mr-2" />
                 Dashboard
               </Link>
             </li>
-            <li className="sidebar-button">
-              <Link to="/AdminProperty">
+            <li className="sidebar-button hover:bg-indigo-500 transition duration-300">
+              <Link to="/AdminProperty" className="flex items-center text-white">
                 <FaUser className="w-6 h-6 mr-2" />
                 Property
               </Link>
             </li>
-            <li className="sidebar-button">
-              <Link to="/favourite">
+            <li className="sidebar-button hover:bg-indigo-500 transition duration-300">
+              <Link to="/favourite" className="flex items-center text-white">
                 <FaHeart className="w-6 h-6 mr-2" />
                 Favourite
               </Link>
             </li>
-            <li className="sidebar-button">
-              <Link to="/settings">
+            <li className="sidebar-button hover:bg-indigo-500 transition duration-300">
+              <Link to="/settings" className="flex items-center text-white">
                 <FaCog className="w-6 h-6 mr-2" />
                 Setting
               </Link>
             </li>
-            <li className="sidebar-button">
-              <Link to="/feedback">
+            <li className="sidebar-button hover:bg-indigo-500 transition duration-300">
+              <Link to="/feedback" className="flex items-center text-white">
                 <FaComments className="w-6 h-6 mr-2" />
                 Feedback
               </Link>
             </li>
-            <li className="sidebar-button">
-              <Link to="/logout">
+            <li className="sidebar-button hover:bg-indigo-500 transition duration-300">
+              <Link to="/logout" className="flex items-center text-white">
                 <FaSignOutAlt className="w-6 h-6 mr-2" />
                 Logout
               </Link>
@@ -95,62 +92,36 @@ const Sidebar = () => {
         )}
       </nav>
 
-      {/* Main Content */}
-      <main className="flex-1 p-0">
-        {/* Property Cards */}
-        <div className="grid grid-cols-3 gap-4">
-          {/* You can map through your properties here */}
-          {/* Example Card */}
-          <div
-            className="bg-white shadow-1 p-5 rounded-lg rounded-tl-[90px] w-full max-w-[352px] mx-auto
-                     cursor-pointer hover:shadow-2xl transition "
-          >
-            <img src={house5} alt="Property" className="mb-8" />
-            <div className="flex justify-between mb-2">
-              <button className="bg-green-500 rounded-full text-white px-3">
-                House
-              </button>
-              <button className="bg-violet-500 rounded-full text-white px-3">
-                Rajkot
-              </button>
-            </div>
-            <p className="text-lg font-semibold max-w-[260px]">
-              Gondal Rd, Rajkot, Gujarat 360020
-            </p>
+      <main className="flex-1 p-4 ">
+        <div className="grid grid-cols-4 gap-4 ">
+          <div className="bg-white shadow-2xl p-6 rounded-lg cursor-pointer hover:shadow-3xl hover:bg-indigo-500 transition duration-300">
+            <img src={house5} alt="Property" className="mb-4" />
+            <p className="text-lg font-semibold mb-2">Gondal Rd, Rajkot, Gujarat 360020</p>
             <div className="flex items-center mb-2">
-              <i className="fa fa-bed mr-1"></i>6
+              <span className="bg-green-500 text-white rounded-full px-2 py-1 mr-2">House</span>
+              <span className="bg-violet-500 text-white rounded-full px-2 py-1">Rajkot</span>
+            </div>
+            <div className="flex items-center text-gray-600">
+              <i className="fa fa-bed mr-2"></i>6
               <i className="fa fa-bath mx-4"></i>3
               <i className="fa fa-area-chart mx-4"></i>4200 sq ft
             </div>
-            <div className="text-lg font-semibold text-violet-600 mb-4">
-              Rs 1400000
-            </div>
+            <p className="text-lg font-semibold text-violet-600 mt-4">Rs 1,400,000</p>
           </div>
 
-          <div
-            className="bg-white shadow-1 p-5 rounded-lg rounded-tl-[90px] w-full max-w-[352px] mx-auto
-                     cursor-pointer hover:shadow-2xl transition "
-          >
-            <img src={house6} alt="Property" className="mb-8" />
-            <div className="flex justify-between mb-2">
-              <button className="bg-green-500 rounded-full text-white px-3">
-                Appartment
-              </button>
-              <button className="bg-violet-500 rounded-full text-white px-3">
-                Surat
-              </button>
-            </div>
-            <p className="text-lg font-semibold max-w-[260px]">
-              Laxminagar Rd, Surat, Gujarat 360020
-            </p>
+          <div className="bg-white shadow-2xl p-6 rounded-lg cursor-pointer hover:shadow-3xl hover:bg-indigo-500 transition duration-300">
+            <img src={house6} alt="Property" className="mb-4" />
+            <p className="text-lg font-semibold mb-2">Laxminagar Rd, Surat, Gujarat 360020</p>
             <div className="flex items-center mb-2">
-              <i className="fa fa-bed mr-1"></i>8
+              <span className="bg-green-500 text-white rounded-full px-2 py-1 mr-2">Apartment</span>
+              <span className="bg-violet-500 text-white rounded-full px-2 py-1">Surat</span>
+            </div>
+            <div className="flex items-center text-gray-600">
+              <i className="fa fa-bed mr-2"></i>8
               <i className="fa fa-bath mx-4"></i>6
               <i className="fa fa-area-chart mx-4"></i>8200 sq ft
             </div>
-            <div className="text-lg font-semibold text-violet-600 mb-4">
-              Rs 1900000
-            </div>
+            <p className="text-lg font-semibold text-violet-600 mt-4">Rs 1,900,000</p>
           </div>
         </div>
       </main>
