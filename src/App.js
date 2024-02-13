@@ -12,6 +12,8 @@ import HouseList from './components/HouseList';
 import About from './components/About';  
 import Sidebar from './components/Dashboard';
 import AdminProperty from './components/Admin_User';  
+import FeedbackForm from './components/Feedback';
+
 
 
 
@@ -34,8 +36,11 @@ const App = () => {
    <Route path='/HouseList' element={<HouseList />} /> 
    <Route path='/contact' element={<Footer />} />  
    <Route path='/Sidebar' element={<Sidebar />} /> 
-   <Route path='/AdminProperty' element={<AdminProperty />} />  
- 
+   <Route path='/AdminProperty' element={<AdminProperty />} />
+   <Route path='/AdminProperty' element={<AdminProperty />} />
+   <Route path='/FeedbackForm' element={<FeedbackForm />} />
+
+   
   
    
    </Routes>

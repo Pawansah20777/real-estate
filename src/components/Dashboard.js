@@ -77,7 +77,7 @@ const Sidebar = () => {
               </Link>
             </li>
             <li className="sidebar-button hover:bg-indigo-500 transition duration-300">
-              <Link to="/feedback" className="flex items-center text-white">
+              <Link to="/FeedbackForm" className="flex items-center text-white">
                 <FaComments className="w-6 h-6 mr-2" />
                 Feedback
               </Link>
