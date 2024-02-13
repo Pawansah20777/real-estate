@@ -10,10 +10,15 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';   
 import HouseList from './components/HouseList';  
 import About from './components/About';  
+import Sidebar from './components/Dashboard';
+import AdminProperty from './components/Admin_User';  
+
+
 
 //import pages
 import Home from './pages/Home';
 import PropertyDetails from './pages/PropertyDetails';
+
 
 const App = () => {
   return (
@@ -28,6 +33,10 @@ const App = () => {
    <Route path='/About' element={<About />} /> 
    <Route path='/HouseList' element={<HouseList />} /> 
    <Route path='/contact' element={<Footer />} />  
+   <Route path='/Sidebar' element={<Sidebar />} /> 
+   <Route path='/AdminProperty' element={<AdminProperty />} />  
+ 
+  
    
    </Routes>
    <Footer/> 

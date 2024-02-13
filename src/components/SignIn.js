@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import backgroundImage from '../assets/img/houses/b.avif'; // Import your background image
+import { Link } from 'react-router-dom';
+
 
 const SignIn = () => {
   const [credentials, setCredentials] = useState({
@@ -125,7 +127,7 @@ const SignIn = () => {
           onMouseEnter={() => styles.buttonHover}
           onMouseLeave={() => ({})}
         >
-          Sign In
+         <Link to="/Sidebar">Sign In</Link>
         </button>
       </form>
     </div>
