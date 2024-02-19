@@ -1,28 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import backgroundImage from '../assets/img/houses/b.avif'; // Import your background image
-import { Link } from 'react-router-dom';
 
 const SignUp = () => {
-  const [userData, setUserData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-  });
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate=useNavigate();
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserData({
-      ...userData,
-      [name]: value,
+   useEffect(()=>{
+    const auth=localStorage.getItem("users");
+    if(auth){
+      navigate('/');
+    }}
+    
+   )
+
+  const collectData = async () => {
+    const response = await fetch('http://localhost:5000/register', {
+        method: 'POST',
+        body: JSON.stringify({ name, phone, email, password }),
+        headers: { 'Content-Type': 'application/json' }
     });
-  };
+    const result = await response.json();
+    console.log(result);
 
-  const handleSignUp = (e) => {
-    e.preventDefault();
-    console.log('Sign Up with:', userData);
-    // Add your sign up logic here
-  };
+    if (result) {
+      localStorage.setItem("users",JSON.stringify(result));
+        navigate('/');
+    }
+} 
 
   const styles = {
     container: {
@@ -118,18 +126,21 @@ const SignUp = () => {
     },
   };
 
+
+ 
+
   return (
     <div style={styles.container}>
       <img src={require('../assets/img/houses/a.jpeg')} alt="HomeLand." style={styles.logo} />
       <h2 style={styles.header}>Sign Up</h2>
-      <form style={styles.form} onSubmit={handleSignUp}>
-        <label style={styles.label}>
-          Name:
+
+      <form style={styles.form}>
+
+        <label style={styles.label}>Name:
           <input
             type="text"
-            name="firstName"
-            value={userData.firstName}
-            onChange={handleInputChange}
+            value={name}
+           onChange={(e) => setName(e.target.value)}
             style={styles.input}
             required
           />
@@ -138,9 +149,8 @@ const SignUp = () => {
           Phone:
           <input
             type="text"
-            name="Phone"
-            value={userData.Phone}
-            onChange={handleInputChange}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
             style={styles.input2}
             required
           />
@@ -149,9 +159,8 @@ const SignUp = () => {
           Email:
           <input
             type="email"
-            name="email"
-            value={userData.email}
-            onChange={handleInputChange}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             style={styles.input4}
             required
           />
@@ -160,9 +169,8 @@ const SignUp = () => {
           Password:
           <input
             type="password"
-            name="password"
-            value={userData.password}
-            onChange={handleInputChange}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             style={styles.input1}
             required
           />
@@ -172,10 +180,9 @@ const SignUp = () => {
         <button 
           type="submit"
           style={styles.button}
-          onMouseEnter={() => styles.buttonHover}
-          onMouseLeave={() => ({})}
+          onClick={collectData}
         >
-         <Link to="/signIn">Sign Up</Link>
+        Sign Up
         </button>
       </form>
     </div>

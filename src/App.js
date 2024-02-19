@@ -13,7 +13,7 @@ import About from './components/About';
 import Sidebar from './components/Dashboard';
 import AdminProperty from './components/Admin_User';  
 import FeedbackForm from './components/Feedback';
-
+import Private from './components/Private';
 
 
 
@@ -27,19 +27,20 @@ const App = () => {
   <div className='max-w-[1440px] mx-auto bg-white'>
    <Header/>
    <Routes>
+    <Route element={<Private/>}>
    <Route path='/' element={<Home/>}/>
    <Route path='/property/:id' element={<PropertyDetails/>}/>
-   <Route path='/signin' element={<SignIn />} />  {/* Add the SignIn route */}
-   <Route path='/signUp' element={<SignUp />} />  {/* Add the SignUp route */}
-   <Route path='/Home' element={<Home />} /> 
-   <Route path='/About' element={<About />} /> 
    <Route path='/HouseList' element={<HouseList />} /> 
    <Route path='/contact' element={<Footer />} />  
+   </Route>
+   <Route path='/Home' element={<Home />} /> 
+   <Route path='/About' element={<About />} /> 
    <Route path='/Sidebar' element={<Sidebar />} /> 
    <Route path='/AdminProperty' element={<AdminProperty />} />
    <Route path='/AdminProperty' element={<AdminProperty />} />
    <Route path='/FeedbackForm' element={<FeedbackForm />} />
-
+   <Route path='/signin' element={<SignIn />} /> 
+   <Route path='/signUp' element={<SignUp />} /> 
    
   
    
