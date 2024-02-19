@@ -28,11 +28,11 @@ const App = () => {
    <Header/>
    <Routes>
     <Route element={<Private/>}>
-   <Route path='/' element={<Home/>}/>
    <Route path='/property/:id' element={<PropertyDetails/>}/>
    <Route path='/HouseList' element={<HouseList />} /> 
    <Route path='/contact' element={<Footer />} />  
    </Route>
+   <Route path='/' element={<Home/>}/>
    <Route path='/Home' element={<Home />} /> 
    <Route path='/About' element={<About />} /> 
    <Route path='/Sidebar' element={<Sidebar />} /> 

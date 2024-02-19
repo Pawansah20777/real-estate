@@ -25,10 +25,20 @@ const Header = () => {
           <Link className='hover:text-voilet-900 transition' to='/About'>About</Link>
           <Link className=' text-black px-4 py-3 rounded-lg  transition' to='/Footer'>Contact</Link>
           {/* <Link className='hover:text-voilet-900 transition' to='/SignIn'>Sign in</Link> */}
-         {auth? <Link className='hover:text-voilet-900 transition flex items-center' >
+         {/* {auth? <Link className='hover:text-voilet-900 transition flex items-center' >
           <FaSignOutAlt className="mr-1" to="/signUp" onClick={logout}/>Logout</Link>: 
           <Link  className='bg-violet-700 hover:bg-violet-800 text-white px-4 py-3 rounded-lg  transition' to='/signUp'>Sign up
-          </Link>}
+          </Link>} */}
+         {auth?<Link className='hover:text-voilet-900 transition flex items-center' >
+          <FaSignOutAlt className="mr-1" to="/signUp" onClick={logout}/>Logout({JSON.parse(auth).name})</Link>: 
+          <>
+          <Link className='hover:text-voilet-900 transition' to='/SignIn'>Sign in</Link>
+          <Link  className='bg-violet-700 hover:bg-violet-800 text-white px-4 py-3 rounded-lg  transition' to='/signUp'>Sign up
+          </Link>
+          </>}
+          
+
+
         </div>
       </div>
     </header>

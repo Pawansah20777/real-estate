@@ -1,27 +1,45 @@
-import React, { useState } from 'react';
-import backgroundImage from '../assets/img/houses/b.avif'; // Import your background image
-import { Link } from 'react-router-dom';
-
+import React, { useState,useEffect } from 'react';
+import backgroundImage from '../assets/img/houses/b.avif'; 
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 const SignIn = () => {
-  const [credentials, setCredentials] = useState({
-    username: '',
-    password: '',
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate=useNavigate();
+
+  useEffect(() => {
+    const auth = localStorage.getItem("users");
+    if (auth) {
+      navigate("/");
+    }
   });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setCredentials({
-      ...credentials,
-      [name]: value,
-    });
-  };
 
-  const handleSignIn = (e) => {
+  const handleLogin=async(e)=>{
     e.preventDefault();
-    console.log('Sign In with:', credentials);
-    // Add your authentication logic here
-  };
+    let result = await fetch('http://localhost:5000/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+      headers: { 'Content-Type': 'application/json' }
+  });
+      result = await result.json();
+      
+  if (result.name) {
+    localStorage.setItem("users",JSON.stringify(result));
+    Swal.fire({
+      position: "top-center",
+      icon: "success",
+      title: "You are Successfully Logged",
+      showConfirmButton: false,
+      timer: 2500
+    });
+      navigate('/');
+  }else
+  {
+    alert("please fill correct details!")
+  }
+  }
 
   const styles = {
     container: {
@@ -98,36 +116,32 @@ const SignIn = () => {
     <div style={styles.container}>
       <img src={require('../assets/img/houses/a.jpeg')} alt="HomeLand." style={styles.logo } />{/* Add your logo */}
       <h2 style={styles.header}>Sign In</h2>
-      <form style={styles.form} onSubmit={handleSignIn}>
-        <label style={styles.label}>
-          Username:
+      <form style={styles.form} >
+        
+        <label style={styles.label}>Username:
           <input
-            type="text"
-            name="username"
-            value={credentials.username}
-            onChange={handleInputChange}
+            type="email"
+            value={email}
             style={styles.input}
-            required
-          />
+            onChange={(e)=>setEmail(e.target.value)}
+            required />
         </label>
-        <label style={styles.label}>
-          Password:
+
+        <label style={styles.label}> Password:
           <input
             type="password"
-            name="password"
-            value={credentials.password}
-            onChange={handleInputChange}
+            value={password}
             style={styles.input1}
-            required
-          />
+            onChange={(e)=>setPassword(e.target.value)}
+            required/>
         </label>
+
         <button
           type="submit"
           style={styles.button}
-          onMouseEnter={() => styles.buttonHover}
-          onMouseLeave={() => ({})}
+          onClick={handleLogin}
         >
-         <Link to="/Sidebar">Sign In</Link>
+         Sign In
         </button>
       </form>
     </div>
