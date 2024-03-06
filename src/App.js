@@ -7,13 +7,13 @@ import{Routes,Route} from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import SignIn from './components/SignIn';  
-import SignUp from './components/SignUp';   
+import SignUp from './components/SignUp'; 
 import HouseList from './components/HouseList';  
 import About from './components/About';  
-import Sidebar from './components/Dashboard';
 import AdminProperty from './components/Admin_User';  
 import FeedbackForm from './components/Feedback';
 import Private from './components/Private';
+import Sidebar from './components/Sidebar';
 
 
 
@@ -30,17 +30,22 @@ const App = () => {
     <Route element={<Private/>}>
    <Route path='/property/:id' element={<PropertyDetails/>}/>
    <Route path='/HouseList' element={<HouseList />} /> 
-   <Route path='/contact' element={<Footer />} />  
+   <Route path='/contact' element={<Footer />} /> 
+   <Route path='/Sidebar' element={<Sidebar />} />  
+ 
    </Route>
    <Route path='/' element={<Home/>}/>
    <Route path='/Home' element={<Home />} /> 
    <Route path='/About' element={<About />} /> 
-   <Route path='/Sidebar' element={<Sidebar />} /> 
    <Route path='/AdminProperty' element={<AdminProperty />} />
    <Route path='/AdminProperty' element={<AdminProperty />} />
    <Route path='/FeedbackForm' element={<FeedbackForm />} />
    <Route path='/signin' element={<SignIn />} /> 
-   <Route path='/signUp' element={<SignUp />} /> 
+   <Route path='/signUp' element={<SignUp />} />
+   <Route path='/abc' element={<SignIn />} />
+
+ 
+ 
    
   
    

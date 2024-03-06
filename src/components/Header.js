@@ -11,7 +11,7 @@ const Header = () => {
     navigate('/signUp')
   }
   return (
-    <header className='py-6 mb-12 border-b'>
+    <header className='py-6 mb-2 border-b'>
       <div className='container mx-auto flex justify-between items-center'>
         {/* logo */}
         <Link to='/'>

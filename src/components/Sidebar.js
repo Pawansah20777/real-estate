@@ -23,7 +23,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex h-screen mb-10">
+    <div className="flex h-screen mb-0">
       <nav
         className="flex-none w-64 bg-gray-900 p-4 relative"
         style={{ height: "100vh" }}
@@ -32,7 +32,7 @@ const Sidebar = () => {
           <div className="relative">
             <img
               src={p}
-              alt="Circular Image"
+              alt=""
               className="rounded-full w-16 h-16"
             />
           </div>
@@ -128,5 +128,7 @@ const Sidebar = () => {
     </div>
   );
 };
+
+
 
 export default Sidebar;

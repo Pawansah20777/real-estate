@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import backgroundImage from '../assets/img/houses/b.avif'; 
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
@@ -55,7 +56,6 @@ const SignIn = () => {
     },
     logo: {
       width: '20%',
-      marginBottom: '20px',
       color: '#fff',
       fontSize: '15px',
     },
@@ -63,9 +63,13 @@ const SignIn = () => {
       textAlign: 'center',
       color: '#fff',
       fontSize: '24px',
-      marginBottom: '20px',
+      marginBottom: '10px',
       fontWeight: 'bold',
     },
+    text:{
+      color: "#fff",
+      fontSize: "15px",
+     },
     form: {
       display: 'flex',
       flexDirection: 'column',
@@ -143,6 +147,8 @@ const SignIn = () => {
         >
          Sign In
         </button>
+        <div className='mt-2 ml-1' style={styles.text}>Not Registered Yet ? <Link to="/SignUp" style={{color: '#007bff'}}>Register Here</Link></div>
+
       </form>
     </div>
   );
