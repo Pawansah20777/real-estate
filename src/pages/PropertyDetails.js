@@ -73,18 +73,18 @@ const PropertyDetails = () => {
             <input className='border border-gray-300
              focus:border-violet-700 outline-none rounded w-full px-4 h-14 text-sm' 
              type="text"
-             placeholder='Email'
+             placeholder='Name*'
              />
 
             <input className='border border-gray-300
              focus:border-violet-700 outline-none rounded w-full px-4 h-14 text-sm' 
-             type="text"
+             type="email"
              placeholder='Email*'
              />
 
             <input className='border border-gray-300
              focus:border-violet-700 outline-none rounded w-full px-4 h-14 text-sm' 
-             type="text"
+             type="phone"
              placeholder='Phone*'
              />
 
@@ -97,9 +97,9 @@ const PropertyDetails = () => {
             <div className='flex gap-x-2'>
               <button className='bg-violet-700 hover:bg-violet-800 
               text-white rounded p-4 text-sm w-full transition'>Send Message</button>
-              <button className='border border-violet-700 text-violet-700
+              {/* <button className='border border-violet-700 text-violet-700
               hover:border-violet-500
-              hover:text-violet-500 rounded p-4 text-sm w-full transition'>Call</button>
+              hover:text-violet-500 rounded p-4 text-sm w-full transition'>Call</button> */}
             </div>
           </form>
         </div>

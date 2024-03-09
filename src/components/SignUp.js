@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-
-import backgroundImage from "../assets/img/houses/b.avif"; // Import your background image
+import backgroundImage from "../assets/img/houses/b.avif"; 
 import Swal from 'sweetalert2'
 
 const SignUp = () => {
@@ -14,8 +13,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [Cpassword, setCPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors] = useState({}); // State to hold validation errors
-
+  const [errors, setErrors] = useState({}); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -75,7 +73,7 @@ const SignUp = () => {
           timer: 1500
         });
         localStorage.setItem("users", JSON.stringify(result));
-        navigate("/abc");
+        navigate("/Property");
       }
     }
   };

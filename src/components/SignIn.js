@@ -35,7 +35,7 @@ const SignIn = () => {
       showConfirmButton: false,
       timer: 2500
     });
-      navigate('/');
+      navigate('/Property');
   }else
   {
     alert("please fill correct details!")
