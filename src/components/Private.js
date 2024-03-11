@@ -2,7 +2,8 @@
 import { Navigate,Outlet } from 'react-router-dom';
 
 const Private=() =>{
-    const auth=localStorage.getItem('users');
-    return auth?<Outlet/>:<Navigate to="/SignUp"/>
+    const userAuth=localStorage.getItem('users');
+    const adminAuth = localStorage.getItem("admins");
+    return userAuth || adminAuth?<Outlet/>:<Navigate to="/SignUp"/>
 }
 export default Private;

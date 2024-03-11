@@ -11,11 +11,17 @@ import SignUp from './components/SignUp';
 import HouseList from './components/HouseList';  
 import About from './components/About';  
 import Property from './components/Property';
-import AdminProperty from './components/Admin_User';  
 import FeedbackForm from './components/Feedback';
 import Private from './components/Private';
 import Dashboard from './components/Dashboard';
 import S from './components/S';
+import AdminSidebar from './components/Admin_Sidebar';
+import AdminProperty from './components/AdminProperty';  
+import AdminUsers from './components/AdminUsers';
+import Feedbacks from './components/Feedbacks';
+
+
+
 
 
 
@@ -37,14 +43,18 @@ const App = () => {
    <Route path='/Property' element={<Property />} /> 
    <Route path='/contact' element={<Footer />} /> 
    <Route path='/Dashboard' element={<Dashboard />} />
-   <Route path='/S' element={<S />} />   
+   <Route path='/S' element={<S />} /> 
+   <Route path='/AdminSidebar' element={<AdminSidebar />} />
+   <Route path='/AdminUsers' element={<AdminUsers />} /> 
+   <Route path='/AdminProperty' element={<AdminProperty />} />
+   <Route path='/Feedbacks' element={<Feedbacks />} />
+
+  
    
    </Route>
    <Route path='/' element={<Home/>}/>
    <Route path='/Home' element={<Home />} /> 
    <Route path='/About' element={<About />} /> 
-   <Route path='/AdminProperty' element={<AdminProperty />} />
-   <Route path='/AdminProperty' element={<AdminProperty />} />
    <Route path='/FeedbackForm' element={<FeedbackForm />} />
    <Route path='/SignIn' element={<SignIn />} /> 
    <Route path='/signUp' element={<SignUp />} />

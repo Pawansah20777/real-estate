@@ -17,30 +17,41 @@ const SignIn = () => {
   });
 
 
-  const handleLogin=async(e)=>{
+  const handleLogin = async (e) => {
     e.preventDefault();
     let result = await fetch('http://localhost:5000/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      headers: { 'Content-Type': 'application/json' }
-  });
-      result = await result.json();
-      
-  if (result.name) {
-    localStorage.setItem("users",JSON.stringify(result));
-    Swal.fire({
-      position: "top-center",
-      icon: "success",
-      title: "You are Successfully Logged",
-      showConfirmButton: false,
-      timer: 2500
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+        headers: { 'Content-Type': 'application/json' }
     });
-      navigate('/Property');
-  }else
-  {
-    alert("please fill correct details!")
-  }
-  }
+    result = await result.json();
+
+    if (result.user && result.userType === "user") {
+        localStorage.setItem("users", JSON.stringify(result.user));
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "You are Successfully Logged",
+            showConfirmButton: false,
+            timer: 2500
+        });
+        navigate('/Property');
+    } else if (result.user && result.userType === "admin") {
+        localStorage.setItem("admins", JSON.stringify(result.user));
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "You are Successfully Logged as Admin",
+            showConfirmButton: false,
+            timer: 2500
+        });
+        navigate('/AdminProperty');
+    } else {
+        alert("Please fill correct details!");
+    }
+
+};
+
 
   const styles = {
     container: {
