@@ -3,7 +3,6 @@ import AdminSidebar from "./Admin_Sidebar";
 import { useNavigate } from "react-router-dom";
 
 function AdminProperty() {
-  const navigate = useNavigate();
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
@@ -18,21 +17,18 @@ function AdminProperty() {
     };
 
     fetchData();
-  }, []);
+  }, [properties]);
 
-  const handleRemove = async (propertyId) => {
-    try {
-      const response = await fetch(`http://localhost:5000/property/${propertyId}`, {
-        method: 'DELETE'
-      });
-      if (response.ok) {
-        // Remove the property from the state
-        setProperties(properties.filter(property => property._id !== propertyId));
-      } else {
-        console.error('Failed to remove property');
-      }
-    } catch (error) {
-      console.error('Error removing property:', error);
+
+  const handleRemove = async (email) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+    if (confirmed) {
+        const response = await fetch(`http://localhost:5000/property/${email}`, {
+          method: "DELETE",
+        });
+
     }
   };
 
@@ -72,7 +68,7 @@ function AdminProperty() {
                   <td className="border border-gray-400">{property.houseAddress}</td>
                   <td className="border border-gray-400">{property.message}</td>
                   <td className="border border-gray-400 flex justify-center items-center">
-                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => handleRemove(property._id)}>
+                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => handleRemove(property.email)}>
                       Remove
                     </button>
                   </td>

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AdminSidebar from "./Admin_Sidebar";
-import { useNavigate } from "react-router-dom";
 
 function Feedbacks() {
-  const navigate = useNavigate();
   const [feedbacks, setFeedbacks] = useState([]);
 
   useEffect(() => {
@@ -13,8 +11,8 @@ function Feedbacks() {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const userfeedbacks = await response.json();
-        setFeedbacks(userfeedbacks);
+        const userFeedbacks = await response.json();
+        setFeedbacks(userFeedbacks);
       } catch (error) {
         console.error('Error fetching user data:', error);
         // Handle error gracefully, such as setting feedbacks to an empty array
@@ -23,15 +21,20 @@ function Feedbacks() {
     };
   
     fetchData();
-  }, []);
+  }, [feedbacks]);
 
-  const handleRemove = async () => {
-    
+  
+  const handleRemove = async (feedback) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+    if (confirmed) {
+        const response = await fetch(`http://localhost:5000/feedback/${feedback}`, {
+          method: "DELETE",
+        });
+
+    }
   };
-  
-
-  
-
   return (
     <div className="flex h-screen overflow-hidden">
       <AdminSidebar />
@@ -51,22 +54,23 @@ function Feedbacks() {
                 <th className="border border-gray-400">S.N</th>
                 <th className="border border-gray-400">Feedback</th>
                 <th className="border border-gray-400">Rating</th>
+                <th className="border border-gray-400">Actions</th>
               </tr>
             </thead>
             <tbody>
-  {feedbacks.map((feedback, index) => (
-    <tr key={index}>
-      <td className="border border-gray-400 text-center">{index + 1}</td>
-      <td className="border border-gray-400">{feedback.feedback}</td>
-      <td className="border border-gray-400">{feedback.rating}</td>
-      <td className="border border-gray-400 flex justify-center items-center">
-        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => handleRemove()}>
-          Remove
-        </button>
-      </td>
-    </tr>
-  ))}
-</tbody>
+              {feedbacks.map((feedback, index) => (
+                <tr key={feedback._id}>
+                  <td className="border border-gray-400 text-center">{index + 1}</td>
+                  <td className="border border-gray-400">{feedback.feedback}</td>
+                  <td className="border border-gray-400">{feedback.rating}</td>
+                  <td className="border border-gray-400 flex justify-center items-center">
+                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => handleRemove(feedback.feedback)}>
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       </main>

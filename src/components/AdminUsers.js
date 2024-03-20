@@ -1,48 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import AdminSidebar from "./Admin_Sidebar";
-import { useNavigate } from "react-router-dom";
 
 function AdminUsers() {
-  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/users');
+        const response = await fetch("http://localhost:5000/users");
         const userData = await response.json();
         setUsers(userData);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
     };
 
     fetchData();
-  }, []);
+  }, [users]);
 
-  const handleRemove = async (phone) => {
-    const confirmed = window.confirm("Are you sure you want to delete this user?");
+  const handleRemove = async (email) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
     if (confirmed) {
-      try {
-        const response = await fetch(`http://localhost:5000/users/${phone}`, {
-          method: 'DELETE'
-        }); 
-        
-        if (response.ok) {
-          // Remove the user from the state
-          setUsers(prevUsers => prevUsers.filter(user => user.phone !== phone));
-          navigate('/AdminUsers');
-        } else {
-          console.error('Failed to delete user');
-        }
-      } catch (error) {
-        console.error('Error deleting user:', error);
-      }
+        const response = await fetch(`http://localhost:5000/users/${email}`, {
+          method: "DELETE",
+        });
     }
   };
-  
-
-  
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -70,12 +51,17 @@ function AdminUsers() {
             <tbody>
               {users.map((user, index) => (
                 <tr key={index}>
-                  <td className="border border-gray-400 text-center">{index + 1}</td>
+                  <td className="border border-gray-400 text-center">
+                    {index + 1}
+                  </td>
                   <td className="border border-gray-400">{user.name}</td>
                   <td className="border border-gray-400">{user.email}</td>
                   <td className="border border-gray-400">{user.phone}</td>
                   <td className="border border-gray-400 flex justify-center items-center">
-                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => handleRemove(user.phone)}>
+                    <button
+                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                      onClick={() => handleRemove(user.email)}
+                    >
                       Remove
                     </button>
                   </td>

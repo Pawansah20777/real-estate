@@ -20,13 +20,6 @@ import AdminProperty from './components/AdminProperty';
 import AdminUsers from './components/AdminUsers';
 import Feedbacks from './components/Feedbacks';
 
-
-
-
-
-
-
-
 //import pages
 import Home from './pages/Home';
 import PropertyDetails from './pages/PropertyDetails';
