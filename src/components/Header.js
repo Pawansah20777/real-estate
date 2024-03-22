@@ -11,6 +11,7 @@ const Header = () => {
   const user = () => {
     if (userAuth) {
       navigate('/Property');
+      console.log(userAuth);
     } else {
       navigate('/AdminProperty');
     } 

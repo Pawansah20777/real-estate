@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Swal from 'sweetalert2';
 import S from '../components/S';
 import { useNavigate } from 'react-router-dom';
@@ -45,8 +45,6 @@ const FeedbackForm = () => {
     }
   };
 
-
-
   return (
     <div className="flex h-screen">
       <nav>
@@ -54,7 +52,7 @@ const FeedbackForm = () => {
       </nav>
 
       <div className="ml-48 mt-20 w-full max-w-md">
-        <form onSubmit={handleSubmit} className="bg-violet-500 px-8 pt-6 pb-8">
+        <form onSubmit={handleSubmit} className="rounded-lg border border-gray-400 shadow-lg hover:shadow-xl" style={{ marginBottom: "20px", padding: "20px", backgroundColor: "#f7fafc" }}>
           <div className="mb-6">
             <label className="block text-black-700 text-sm font-bold mb-2" htmlFor="feedback">
               Share your feedback:

@@ -16,10 +16,7 @@ const Banner = () => {
         <span className='text-violet-700'>Rent</span> Your Dreams House With Us.
         </h1>
         <p className='max-w-[480px] mb-8'> 
-        Discover unparalleled luxury and comfort as you rent your dream house with us. 
-        Nestled in the heart of [City/Area], our exclusive properties redefine sophistication, 
-        offering a harmonious blend of modern elegance and timeless charm. Each residence is meticulously designed to cater to your every need, 
-        featuring spacious interiors, state-of-the-art amenities, and breathtaking views
+        Experience unparalleled luxury and comfort as you rent your dream house with us. Nestled in the heart of your city.
         </p>
     </div>
     {/* image */}

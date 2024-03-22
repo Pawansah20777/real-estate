@@ -40,12 +40,12 @@ function Feedbacks() {
       <AdminSidebar />
       <main className="w-full px-4 overflow-y-auto">
         <div className="container mx-auto mt-8">
-          <div className="flex justify-between items-center mb-4">
+          {/* <div className="flex justify-between items-center mb-4">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-0 rounded focus:outline-none focus:shadow-outline">
               <i className="fas fa-edit mr-2"></i>Add New
             </button>
-          </div>
-          <h5 className="text-lg font-bold">Properties</h5>
+          </div> */}
+          <h5 className="text-lg font-bold">Feedbacks</h5>
         </div>
         <div className="container mx-auto mt-4">
           <table className="table-auto w-full border-collapse border border-gray-400">

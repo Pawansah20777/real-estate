@@ -1,12 +1,19 @@
 import React from "react";
-import { useNavigate, Link } from 'react-router-dom';
-import { FaUser, FaHome, FaSignOutAlt, FaComments } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { FaHome, FaBuilding, FaHeart, FaSignOutAlt } from "react-icons/fa";
 
-function AdminSidebar() {
+const AdminSidebar = () => {
   const navigate = useNavigate();
   const adminAuth = JSON.parse(localStorage.getItem("admins"));
-  const name = adminAuth.name; // assuming name is stored within admins object
-  const email = adminAuth.email; // assuming email is stored within admins object
+  
+  if (!adminAuth) {
+    navigate('/');
+    return null;
+  }
+
+  const name = adminAuth.name;
+  const email = adminAuth.email;
 
   const logout = () => {
     const confirmLogout = window.confirm("Are you sure you want to logout?");
@@ -16,43 +23,110 @@ function AdminSidebar() {
     }
   };
 
-  return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <nav className="hidden md:block bg-gradient-to-b from-purple-500 to-indigo-600 w-48 p-4 overflow-y-auto shadow-lg rounded-lg">
-        <div className="flex flex-col items-center mb-4">
-          <span className="text-sm font-bold text-white mt-2">{name}</span>
-          <span className="text-xs text-gray-200">{email}</span>
-        </div>
-        <ul>
-          <li>
-            <Link to="/AdminUsers" className="sidebar-button flex items-center space-x-2 py-2 px-4 rounded-md hover:bg-indigo-500 transition duration-300">
-              <FaUser className="w-6 h-6 text-white" />
-              <span className="text-white">Users</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/AdminProperty" className="sidebar-button flex items-center space-x-2 py-2 px-4 rounded-md hover:bg-indigo-500 transition duration-300">
-              <FaHome className="w-10 h-10 text-white" />
-              <span className="text-white">Property</span>
-            </Link>
-          </li>
-          <li>
-            {/* Add link and icon for Messages */}
-            <Link to="/Feedbacks" className="sidebar-button flex items-center space-x-2 py-2 px-4 rounded-md hover:bg-indigo-500 transition duration-300">
-              <FaComments className="w-6 h-6 text-white" />
-              <span className="text-white">Feedbacks</span>
-            </Link>
-          </li>
+  const styles = {
+    customSidebar: {
+      width: '240px',
+      backgroundColor: 'white',
+      minHeight: '80vh',
+      borderRight: '2px solid #ccc',
+      borderRadius: '0 15px 15px 0',
+      padding: '15px',
+    },
+    customSidebarButton: {
+      display: 'flex',
+      alignItems: 'center',
+      padding: '5px',
+      borderRadius: '50px',
+      transition: 'background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease',
+      marginBottom: 'auto',
+      color: 'black',
+      textDecoration: 'none',
+      border: '2px solid transparent',
+      background: 'transparent',
+    },
+    customSidebarButtonHover: {
+      backgroundColor: 'transparent',
+      color: 'blue',
+      border: '2px solid blue',
+    },
+    icon: {
+      marginRight: '10px',
+      fontSize: '20px',
+    },
+    profileSection: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: '20px',
+      textAlign: 'center',
+    },
+    profileImg: {
+      width: '150px',
+      height: '150px',
+      borderRadius: '50%',
+      objectFit: 'cover',
+      marginBottom: '10px',
+    },
+    navBar: {
+      listStyleType: 'none',
+      padding: 0,
+      margin: 0,
+    },
+  };
 
-          <li onClick={logout} className="sidebar-button flex items-center space-x-2 py-2 px-4 rounded-md hover:bg-indigo-500 transition duration-300">
-            <FaSignOutAlt className="w-6 h-6 text-white" />
-            <span className="text-white">Logout</span>
-          </li>
+  return (
+    <nav style={styles.customSidebar} className="mb-5">
+      <div style={styles.profileSection}>
+        <div className="text-lg font-semibold text-black">{name}</div>
+        <div className="text-lg font-semibold text-gray-500">{email}</div>
+      </div>
+      <br />
+      <b>
+        <ul className="nav flex-column" style={styles.navBar}>
+          <div
+            style={{ ...styles.customSidebarButton, ...styles.customSidebarButtonHover }}
+            className="custom-sidebar-button"
+          >
+            <Link to="/AdminUsers" style={styles.customSidebarButton}>
+              <FaHome style={styles.icon} />
+              Users
+            </Link>
+          </div>
+          <br />
+          <div
+            style={{ ...styles.customSidebarButton, ...styles.customSidebarButtonHover }}
+            className="custom-sidebar-button"
+          >
+            <Link to="/AdminProperty" style={styles.customSidebarButton}>
+              <FaBuilding style={styles.icon} />
+              Properties
+            </Link>
+          </div>
+          <br />
+          <div
+            style={{ ...styles.customSidebarButton, ...styles.customSidebarButtonHover }}
+            className="custom-sidebar-button"
+          >
+            <Link to="/Feedbacks" style={styles.customSidebarButton}>
+              <FaHeart style={styles.icon} />
+              Feedbacks
+            </Link>
+          </div>
+          <br />
+          <div
+            style={{ ...styles.customSidebarButton, ...styles.customSidebarButtonHover }}
+            className="custom-sidebar-button"
+          >
+            <Link to="#" onClick={logout} style={styles.customSidebarButton}>
+              <FaSignOutAlt style={styles.icon} />
+              Logout
+            </Link>
+          </div>
         </ul>
-      </nav>
-    </div>
+      </b>
+    </nav>
   );
-}
+};
 
 export default AdminSidebar;
