@@ -73,7 +73,7 @@ const SignUp = () => {
           timer: 1500
         });
         localStorage.setItem("users", JSON.stringify(result));
-        navigate("/Property");
+        navigate("/SignIn");
       }
     }
   };
