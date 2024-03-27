@@ -72,7 +72,7 @@ const SignUp = () => {
           showConfirmButton: false,
           timer: 1500
         });
-        localStorage.setItem("users", JSON.stringify(result));
+        // localStorage.setItem("users", JSON.stringify(result));
         navigate("/SignIn");
       }
     }

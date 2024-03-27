@@ -41,10 +41,8 @@ const App = () => {
    <Route path='/AdminUsers' element={<AdminUsers />} /> 
    <Route path='/AdminProperty' element={<AdminProperty />} />
    <Route path='/Feedbacks' element={<Feedbacks />} />
-
-  
-   
    </Route>
+   
    <Route path='/' element={<Home/>}/>
    <Route path='/Home' element={<Home />} /> 
    <Route path='/About' element={<About />} /> 
